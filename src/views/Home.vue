@@ -127,30 +127,32 @@ export default {
         740, { density: 1, isStatic: true }))
 
       let walls = []
-      // for (let i = 0; i < 4; i++) {
-      //   for (let j = 0; j < 4; j++) {
-      //     let n = (i * 4 + j) % 7
-      //     if (n < 3) {
-      //       walls.push(Bodies.rectangle(
-      //         150 + j * 200,
-      //         100 + i * 200,
-      //         200,
-      //         10, { density: 1, isStatic: true }))
-      //     } else {
-      //       walls.push(Bodies.polygon(
-      //         150 + j * 200,
-      //         100 + i * 200,
-      //         n, 100, { density: 1, isStatic: true }))
-      //     }
-      //   }
-      // }
-      for (let i = 1; i < 800; i++) {
-        framewalls.push(Bodies.rectangle(
-          70 + (830 - 70 - 60 * (i % 2 === 0 ? 1 : -1)) / 2,
-          10 + 5 + 60 * i,
-          830 - 70 - 60,
-          10, { density: 1, isStatic: true }))
+      // option 1: 活動機關迷宮
+      for (let i = 0; i < 4; i++) {
+        for (let j = 0; j < 4; j++) {
+          let n = (i * 4 + j) % 3
+          if (n < 3) {
+            walls.push(Bodies.rectangle(
+              150 + j * 200,
+              100 + i * 200,
+              200,
+              10, { density: 1, isStatic: true }))
+          } else {
+            walls.push(Bodies.polygon(
+              150 + j * 200,
+              100 + i * 200,
+              n, 100, { density: 1, isStatic: true }))
+          }
+        }
       }
+      // option2: 固定牆迷宮
+      // for (let i = 1; i < 800; i++) {
+      //   framewalls.push(Bodies.rectangle(
+      //     70 + (830 - 70 - 60 * (i % 2 === 0 ? 1 : -1)) / 2,
+      //     10 + 5 + 60 * i,
+      //     830 - 70 - 60,
+      //     10, { density: 1, isStatic: true }))
+      // }
 
       engine.world.gravity.x = 0
       engine.world.gravity.y = 0
